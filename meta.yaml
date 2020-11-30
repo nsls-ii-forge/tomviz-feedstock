@@ -1,0 +1,36 @@
+{% set name = "tomviz" %}
+{% set version = "1.9.0" %}
+{% set sha256 = "b006c144a5ab3c0f105c9a2a6fe73e1c66d1e59880d7a33a25fb6a864dcaa695" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://github.com/OpenChemistry/{{ name }}/releases/download/{{ version  }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - pkg-config
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+  host:
+    - python
+  run:
+    - python
+    - numpy
+
+test:
+  imports:
+    - tomviz
+
+about:
+  home: https://github.com/OpenChemistry/tomviz
+  license: BSD-3-Clause
+  license_file: LICENSE
+  summary: Cross platform, open source application for the processing, visualization, and analysis of 3D tomography data
