@@ -1,14 +1,18 @@
 {% set name = "tomviz" %}
 {% set version = "1.9.0" %}
-{% set sha256 = "b006c144a5ab3c0f105c9a2a6fe73e1c66d1e59880d7a33a25fb6a864dcaa695" %}
-
+{% set sha256 = "cdb3860d1fbc5a5d628f985158da75fa82e17ceb24c2f0cd8cf5bc772c7e2e34" %}
+{% set paraview_sha = "98a2eea1af02a45fa6d9b72b97b67f991bcb1f0e" %}
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/OpenChemistry/{{ name }}/releases/download/{{ version  }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  - url: https://github.com/OpenChemistry/{{ name }}/releases/download/{{ version  }}/{{ name }}-{{ version }}.tar.gz
+    sha256: {{ sha256 }}
+    folder: tomviz
+  - git_url: https://github.com/OpenChemistry/ParaView.git
+    git_rev: {{ paraview_sha }}
+    folder: paraview
 
 build:
   number: 0
@@ -16,21 +20,79 @@ build:
 requirements:
   build:
     - cmake
+    - ninja
     - pkg-config
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxext-devel') }}         # [linux]
+    - {{ cdt('libxrender-devel') }}      # [linux]
+    - {{ cdt('mesa-libgl-devel') }}      # [linux]
+    - {{ cdt('mesa-libegl-devel') }}     # [linux]
+    - {{ cdt('mesa-dri-drivers') }}      # [linux]
+    - {{ cdt('libxau-devel') }}          # [linux]
+    - {{ cdt('alsa-lib-devel') }}        # [linux]
+    - {{ cdt('gtk2-devel') }}            # [linux]
+    - {{ cdt('gtkmm24-devel') }}         # [linux]
+    - {{ cdt('libdrm-devel') }}          # [linux]
+    - {{ cdt('libxcomposite-devel') }}   # [linux]
+    - {{ cdt('libxcursor-devel') }}      # [linux]
+    - {{ cdt('libxi-devel') }}           # [linux]
+    - {{ cdt('libxrandr-devel') }}       # [linux]
+    - {{ cdt('pciutils-devel') }}        # [linux]
+    - {{ cdt('libxscrnsaver-devel') }}   # [linux]
+    - {{ cdt('libxtst-devel') }}         # [linux]
+    - {{ cdt('libselinux-devel') }}      # [linux]
+    - {{ cdt('libxdamage') }}            # [linux]
+    - {{ cdt('libxdamage-devel') }}      # [linux]
+    - {{ cdt('libxfixes') }}             # [linux]
+    - {{ cdt('libxfixes-devel') }}       # [linux]
+    - {{ cdt('libxxf86vm') }}            # [linux]
+    - {{ cdt('libxrandr') }}             # [linux]
+    - {{ cdt('alsa-lib') }}              # [linux]
+    - {{ cdt('xorg-x11-server-xvfb') }}  # [linux]
+    - {{ cdt('libxt-devel') }}           # [linux]
+    - {{ cdt('libsm-devel') }}           # [linux]
+    - {{ cdt('libice-devel') }}          # [linux]
+    - {{ cdt('libuuid-devel') }}         # [linux]
   host:
-    - python
+    - python=3.7
+    - hdf5
+    - libpng
+    - jpeg
+    - libtiff
+    - libxml2
+    - zlib
+    - freetype
+    - libprotobuf
+    - lz4-c
+    - expat
+    - libnetcdf
+    - glew
+    - double-conversion
+    - jsoncpp
+    - xz
+    - cgns
+    - qt
+    - pugixml
+    - libtheora
+    - gl2ps
+    - tbb-devel
   run:
-    - python
+    - python=3.7
     - numpy
+    - scipy
+    - itk
+    - marshmallow
+    - jsonpointer
 
 test:
   imports:
-    - tomviz
+    - paraview
 
 about:
   home: https://github.com/OpenChemistry/tomviz
   license: BSD-3-Clause
-  license_file: LICENSE
+  license_file: tomviz/LICENSE
   summary: Cross platform, open source application for the processing, visualization, and analysis of 3D tomography data
