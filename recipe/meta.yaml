@@ -59,7 +59,6 @@ requirements:
     - {{ cdt('libuuid-devel') }}         # [linux]
   host:
     - python=3.7
-    - hdf5
     - libpng
     - jpeg
     - libtiff
