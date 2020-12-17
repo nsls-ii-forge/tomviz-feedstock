@@ -7,8 +7,10 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/OpenChemistry/{{ name }}/releases/download/{{ version  }}/{{ name }}-{{ version }}.tar.gz
-    sha256: {{ sha256 }}
+  #- url: https://github.com/OpenChemistry/{{ name }}/releases/download/{{ version  }}/{{ name }}-{{ version }}.tar.gz
+  #  sha256: {{ sha256 }}
+  - git_url: https://github.com/OpenChemistry/tomviz.git
+    git_rev: ba24c53c1c9e7dea32d2ae4bf6167a1eeb34b036
     folder: tomviz
   - git_url: https://github.com/OpenChemistry/ParaView.git
     git_rev: {{ paraview_sha }}
@@ -87,9 +89,9 @@ requirements:
     - marshmallow
     - jsonpointer
 
-test:
-  imports:
-    - paraview
+#test:
+#  imports:
+#    - paraview
 
 about:
   home: https://github.com/OpenChemistry/tomviz
