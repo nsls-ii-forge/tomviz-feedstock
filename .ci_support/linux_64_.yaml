@@ -5,9 +5,9 @@ c_compiler_version:
 cdt_name:
 - cos6
 channel_sources:
-- conda-forge,defaults
+- nsls2forge,defaults
 channel_targets:
-- conda-forge main
+- nsls2forge main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -20,8 +20,6 @@ freetype:
 - '2'
 glew:
 - '2.1'
-hdf5:
-- 1.10.5
 jpeg:
 - '9'
 jsoncpp:
@@ -31,7 +29,7 @@ libnetcdf:
 libpng:
 - '1.6'
 libprotobuf:
-- '3.12'
+- '3.13'
 libtiff:
 - 4.1.0
 libxml2:
