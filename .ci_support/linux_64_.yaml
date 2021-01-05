@@ -5,7 +5,7 @@ c_compiler_version:
 cdt_name:
 - cos6
 channel_sources:
-- nsls2forge,defaults
+- nsls2forge,defaults,conda-forge
 channel_targets:
 - nsls2forge main
 cxx_compiler:
