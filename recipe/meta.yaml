@@ -60,7 +60,7 @@ requirements:
     - {{ cdt('libice-devel') }}          # [linux]
     - {{ cdt('libuuid-devel') }}         # [linux]
   host:
-    - python=3.7.8
+    - python=3.7
     - libpng
     - jpeg
     - libtiff
