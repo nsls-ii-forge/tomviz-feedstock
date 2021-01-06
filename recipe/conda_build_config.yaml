@@ -4,6 +4,10 @@ channel_targets:
   - nsls2forge main
 cdt_name:
   - cos6
+c_compiler_version:            # [unix]
+  - 7                          # [linux]
+cxx_compiler_version:          # [unix]
+  - 7                          # [linux]
 numpy:
   - 1.16
 python:
