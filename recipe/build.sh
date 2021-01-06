@@ -1,15 +1,8 @@
 
 #!/bin/sh
 
-# Copied from conda-forge ParaView feedstock
-if test `uname` = "Linux"
-then
-  # No rule to make target `.../_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib/librt.so'
-  mkdir -p $BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib/
-  for sn in rt pthread dl m; do
-    cp -v $BUILD_PREFIX/x86_64-conda-linux-gnu/sysroot/usr/lib/lib${sn}.so $BUILD_PREFIX/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib/
-  done
-fi
+# https://gitlab.kitware.com/paraview/paraview/issues/19645
+export LDFLAGS=`echo "${LDFLAGS}" | sed "s|-Wl,-dead_strip_dylibs||g"`
 
 # First build ParaView
 mkdir -p paraview-build && cd paraview-build
