@@ -88,6 +88,7 @@ requirements:
     - itk
     - marshmallow
     - jsonpointer
+    - collection=2021C1.0
 
 #test:
 #  imports:
